@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import { Container, Row, Col } from 'react-bootstrap'
 
 interface State {
   tarhelyek: Tarhely[];
@@ -76,19 +79,29 @@ class App extends Component <{}, State>{
   render() {
     const { regNev, regMeret, regAr } = this.state;
 
-    return <div>
-      <h2>Új tárhely</h2>
-      Név: <input type='text' value={regNev} onChange={e => this.setState({ regNev: e.currentTarget.value })} /><br />
-      Méret: <input type='number' value={regMeret} onChange={e => this.setState({ regMeret: parseInt(e.currentTarget.value) })} /><br />
-      Ár: <input type='number' value={regAr} onChange={e => this.setState({ regAr: parseInt(e.currentTarget.value) })} /><br />
-      <button onClick={this.handleRegister}>Felvétel</button>
-      <h2>Tárhelyek listája</h2>
-      <ul>
+    return <Container>
+      <Row>
+      <Col md><h2>Új tárhely</h2></Col>
+      </Row>
+      <Row id='form'>
+      <Col md>Név: <input type='text' value={regNev} onChange={e => this.setState({ regNev: e.currentTarget.value })} /><br /></Col>
+      <Col md>Méret: <input type='number' value={regMeret} onChange={e => this.setState({ regMeret: parseInt(e.currentTarget.value) })} /><br /></Col>
+      <Col md>Ár: <input type='number' value={regAr} onChange={e => this.setState({ regAr: parseInt(e.currentTarget.value) })} /><br /></Col>
+      </Row>
+      <Row id='gomb'>
+      <Col md><button onClick={this.handleRegister}>Felvétel</button></Col>
+      </Row>
+      <Row>
+      <Col md><h2>Tárhelyek listája</h2></Col>
+      </Row>
+      <Row id='lista'>
+      <Col md><ul>
         {
           this.state.tarhelyek.map(tarhely => <li>{tarhely.nev}</li>)
         }
-      </ul>
-    </div>
+      </ul></Col>
+      </Row>
+    </Container>
   }
 }
 
